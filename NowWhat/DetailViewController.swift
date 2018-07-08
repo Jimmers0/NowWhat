@@ -13,6 +13,7 @@ import CoreData
 
 class DetailViewController: UIViewController {
   
+  @IBOutlet weak var dateLabel: UILabel!
   @IBOutlet weak var taskLabel: UILabel!
   @IBOutlet weak var taskContent: UITextView!
   
@@ -25,11 +26,13 @@ class DetailViewController: UIViewController {
       
       taskLabel.text = item.title
       taskContent.text = item.content
+      dateLabel.text = item.date
       
     } else {
       
       taskLabel.text = ""
       taskContent.text = ""
+      dateLabel.text = ""
     }
   }
   
@@ -42,6 +45,7 @@ class DetailViewController: UIViewController {
     if let detailItem = self.items {
       navigationItem.title = detailItem.title
       taskLabel.text = detailItem.content
+      dateLabel.text = detailItem.date
     }
   }
   
@@ -56,6 +60,7 @@ class DetailViewController: UIViewController {
           
           task.title = taskLabel.text ?? ""
           task.content = taskContent.text ?? ""
+          task.date = dateLabel.text ?? ""
           masterViewController.tableView.reloadData()
           
         } else {
@@ -63,6 +68,7 @@ class DetailViewController: UIViewController {
           let task = self.items ?? CoreData.newTask()
           task.title = taskLabel.text ?? ""
           task.content = taskContent.text ?? ""
+          task.date = dateLabel.text ?? ""
           CoreData.saveTask()
         }
       }

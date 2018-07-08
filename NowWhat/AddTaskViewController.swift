@@ -16,12 +16,24 @@ class AddTaskViewController: UIViewController {
   
   @IBOutlet weak var newTaskTextField: UITextField!
   @IBOutlet weak var newTaskTextView: UITextView!
+  @IBOutlet weak var datePicker: UIDatePicker!
+  @IBOutlet weak var dateLabel: UILabel!
+  
+  @IBAction func datePickerAction(_ sender: Any) {
+    
+    var dateFormatter = DateFormatter()
+    dateFormatter.dateFormat = "dd-MM-yyyy HH:mm"
+    var strDate = dateFormatter.string(from: datePicker.date)
+    self.dateLabel.text = strDate
+    
+  }
   
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
     
     newTaskTextField.text = ""
     newTaskTextView.text = ""
+    dateLabel.text = ""
   }
   
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -36,6 +48,7 @@ class AddTaskViewController: UIViewController {
         let task = self.items ?? CoreData.newTask()
         task.title = newTaskTextField.text ?? ""
         task.content = newTaskTextView.text ?? ""
+        task.date = dateLabel.text ?? "" 
         masterViewController.items.append(task)
         
         CoreData.saveTask()
