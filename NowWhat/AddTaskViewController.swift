@@ -22,7 +22,7 @@ class AddTaskViewController: UIViewController {
   @IBAction func datePickerAction(_ sender: Any) {
     
     var dateFormatter = DateFormatter()
-    dateFormatter.dateFormat = "dd-MM-yyyy HH:mm"
+    dateFormatter.dateFormat = "MM-dd-yyyy"
     var strDate = dateFormatter.string(from: datePicker.date)
     self.dateLabel.text = strDate
     

@@ -7,7 +7,9 @@
 //
 
 import UIKit
-import CoreData 
+import CoreData
+
+
 
 class MasterViewController: UITableViewController, UISplitViewControllerDelegate {
   
